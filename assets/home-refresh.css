@@ -1,0 +1,585 @@
+@import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
+
+:root {
+  --qq-paper: #fdf6e7;
+  --qq-card: #fffdf6;
+  --qq-ink: #292524;
+  --qq-ink-soft: #57534e;
+  --qq-muted: #8a7f72;
+  --qq-line: #292524;
+  --qq-orange: #f97316;
+  --qq-orange-deep: #c2410c;
+  --qq-green: #16a34a;
+  --qq-green-deep: #15803d;
+  --qq-sky: #0284c7;
+  --qq-yellow: #fbbf24;
+  --qq-shadow: 6px 6px 0 rgba(41, 37, 36, 0.85);
+  --qq-shadow-sm: 4px 4px 0 rgba(41, 37, 36, 0.85);
+  --qq-radius: 18px;
+  --qq-font-display: "Jua", "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+/* ---------------------------------------------------------------
+   라이트 "스티커 팝" 테마 — 인게임(qq-ingame)에는 적용하지 않음
+   --------------------------------------------------------------- */
+
+html:has(body.qq-redesign:not(.qq-ingame)) {
+  background: #f7e6c4;
+}
+
+body.qq-redesign:not(.qq-ingame) {
+  overflow-x: hidden;
+  background:
+    radial-gradient(rgba(249, 115, 22, 0.09) 1.6px, transparent 1.6px),
+    radial-gradient(rgba(2, 132, 199, 0.07) 1.6px, transparent 1.6px),
+    linear-gradient(180deg, #fdf6e7 0%, #fbeed3 60%, #f7e6c4 100%) !important;
+  background-size: 34px 34px, 34px 34px, 100% 100%;
+  background-position: 0 0, 17px 17px, 0 0;
+  color: var(--qq-ink) !important;
+}
+
+body.qq-redesign:not(.qq-ingame)::before {
+  content: none;
+}
+
+/* 원본의 어두운 장식 레이어 제거 */
+body.qq-redesign:not(.qq-ingame) .fantasy-bg-image,
+body.qq-redesign:not(.qq-ingame) .fantasy-aurora,
+body.qq-redesign:not(.qq-ingame) .fantasy-stars,
+body.qq-redesign:not(.qq-ingame) .dot-grid-bg,
+body.qq-redesign:not(.qq-ingame) .floating-dots,
+body.qq-redesign:not(.qq-ingame) .dot-cluster {
+  display: none !important;
+}
+
+body.qq-redesign #root > div {
+  position: relative;
+  z-index: 1;
+}
+
+/* 홈/메뉴 화면: 고정 100% 높이 체인(html/body/#root)과 overflow:hidden 래퍼를
+   스크롤 가능하게 완화 */
+html:has(body.qq-home:not(.qq-ingame)) {
+  height: auto !important;
+}
+
+body.qq-home:not(.qq-ingame),
+body.qq-home:not(.qq-ingame) #root,
+body.qq-home:not(.qq-ingame) #root > div {
+  height: auto !important;
+  min-height: 100vh;
+  overflow: visible !important;
+  overflow-x: clip !important;
+}
+
+/* 하단 몬스터 퍼레이드에 푸터가 가리지 않도록 여백 확보 */
+body.qq-home:not(.qq-ingame) #root > div {
+  padding-bottom: 110px !important;
+}
+
+/* 라이트 테마 스크롤바 */
+html:has(body.qq-redesign:not(.qq-ingame))::-webkit-scrollbar,
+body.qq-redesign:not(.qq-ingame)::-webkit-scrollbar {
+  width: 10px;
+}
+
+html:has(body.qq-redesign:not(.qq-ingame))::-webkit-scrollbar-track,
+body.qq-redesign:not(.qq-ingame)::-webkit-scrollbar-track {
+  background: #f3e6ca;
+}
+
+html:has(body.qq-redesign:not(.qq-ingame))::-webkit-scrollbar-thumb,
+body.qq-redesign:not(.qq-ingame)::-webkit-scrollbar-thumb {
+  background: #e0a75e;
+  border: 2px solid #f3e6ca;
+  border-radius: 6px;
+}
+
+body.qq-redesign:not(.qq-ingame) .font-pixel,
+body.qq-redesign:not(.qq-ingame) h1,
+body.qq-redesign:not(.qq-ingame) h2,
+body.qq-redesign:not(.qq-ingame) h3 {
+  font-family: var(--qq-font-display) !important;
+  letter-spacing: 0 !important;
+  font-weight: 400 !important;
+}
+
+body.qq-redesign:not(.qq-ingame) p,
+body.qq-redesign:not(.qq-ingame) label,
+body.qq-redesign:not(.qq-ingame) li,
+body.qq-redesign:not(.qq-ingame) div {
+  letter-spacing: 0 !important;
+}
+
+body.qq-redesign:not(.qq-ingame) .gradient-text,
+body.qq-redesign:not(.qq-ingame) .gradient-text-amber {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: var(--qq-orange) !important;
+  color: var(--qq-orange) !important;
+  text-shadow:
+    -2px -2px 0 #fffdf6, 2px -2px 0 #fffdf6, -2px 2px 0 #fffdf6, 2px 2px 0 #fffdf6,
+    4px 5px 0 rgba(41, 37, 36, 0.28) !important;
+}
+
+/* ---- 카드 / 패널 → 스티커 카드 ---- */
+body.qq-redesign:not(.qq-ingame) .glass-panel,
+body.qq-redesign:not(.qq-ingame) .clean-card,
+body.qq-redesign:not(.qq-ingame) [class*="clean-card"],
+body.qq-redesign:not(.qq-ingame) [class*="glass-panel"] {
+  border: 3px solid var(--qq-line) !important;
+  background: var(--qq-card) !important;
+  box-shadow: var(--qq-shadow) !important;
+  backdrop-filter: none !important;
+  border-radius: var(--qq-radius) !important;
+  transition: transform 0.16s ease, box-shadow 0.16s ease !important;
+}
+
+body.qq-redesign:not(.qq-ingame) .clean-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 rgba(41, 37, 36, 0.85) !important;
+  background: #fffef9 !important;
+}
+
+body.qq-redesign:not(.qq-ingame) .clean-card:before,
+body.qq-redesign:not(.qq-ingame) .clean-card:after {
+  content: none !important;
+}
+
+/* ---- 버튼 ---- */
+body.qq-redesign:not(.qq-ingame) button {
+  font-family: var(--qq-font-display) !important;
+  border-radius: 14px !important;
+  letter-spacing: 0 !important;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.14s ease !important;
+}
+
+body.qq-redesign:not(.qq-ingame) .btn-clean {
+  border: 3px solid var(--qq-line) !important;
+  box-shadow: var(--qq-shadow-sm) !important;
+}
+
+body.qq-redesign:not(.qq-ingame) .btn-clean:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 rgba(41, 37, 36, 0.85) !important;
+}
+
+body.qq-redesign:not(.qq-ingame) .btn-clean:active:not(:disabled) {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 1px 1px 0 rgba(41, 37, 36, 0.85) !important;
+}
+
+body.qq-redesign:not(.qq-ingame) .btn-indigo,
+body.qq-redesign:not(.qq-ingame) .btn-clean.btn-indigo {
+  color: #fffdf6 !important;
+  background: linear-gradient(180deg, #fb923c, var(--qq-orange)) !important;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+body.qq-redesign:not(.qq-ingame) .btn-cyan,
+body.qq-redesign:not(.qq-ingame) .btn-clean.btn-cyan {
+  color: #fffdf6 !important;
+  background: linear-gradient(180deg, #4ade80, var(--qq-green)) !important;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+body.qq-redesign:not(.qq-ingame) .btn-ghost,
+body.qq-redesign:not(.qq-ingame) .btn-clean.btn-ghost {
+  color: var(--qq-ink) !important;
+  background: var(--qq-card) !important;
+}
+
+/* ---- 입력 ---- */
+body.qq-redesign:not(.qq-ingame) input.clean-input,
+body.qq-redesign:not(.qq-ingame) .clean-input {
+  color: var(--qq-ink) !important;
+  border: 3px solid var(--qq-line) !important;
+  background: #fff !important;
+  border-radius: 14px !important;
+  box-shadow: inset 3px 3px 0 rgba(41, 37, 36, 0.08) !important;
+}
+
+body.qq-redesign:not(.qq-ingame) input.clean-input::placeholder,
+body.qq-redesign:not(.qq-ingame) .clean-input::placeholder {
+  color: var(--qq-muted) !important;
+}
+
+body.qq-redesign:not(.qq-ingame) input.clean-input:focus,
+body.qq-redesign:not(.qq-ingame) .clean-input:focus {
+  outline: none !important;
+  border-color: var(--qq-orange) !important;
+  box-shadow: inset 3px 3px 0 rgba(249, 115, 22, 0.12), 0 0 0 4px rgba(249, 115, 22, 0.18) !important;
+}
+
+/* ---- 진행 바 ---- */
+body.qq-redesign:not(.qq-ingame) .progress-container {
+  background: #f0e4cd !important;
+  border: 2px solid var(--qq-line) !important;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+}
+
+body.qq-redesign:not(.qq-ingame) .progress-bar {
+  background: linear-gradient(90deg, #4ade80, var(--qq-green)) !important;
+}
+
+body.qq-redesign:not(.qq-ingame) .progress-bar.danger {
+  background: linear-gradient(90deg, #fb7185, #e11d48) !important;
+}
+
+body.qq-redesign:not(.qq-ingame) .progress-bar.warning {
+  background: linear-gradient(90deg, var(--qq-yellow), var(--qq-orange)) !important;
+}
+
+/* 인라인 색상 테두리(난이도 카드 등) 보정 */
+body.qq-redesign:not(.qq-ingame) [style*="#6366f1"],
+body.qq-redesign:not(.qq-ingame) [style*="rgb(99, 102, 241)"] {
+  border-color: var(--qq-orange) !important;
+}
+
+body.qq-redesign:not(.qq-ingame) [style*="#f43f5e"],
+body.qq-redesign:not(.qq-ingame) [style*="rgb(244, 63, 94)"] {
+  border-color: #e11d48 !important;
+}
+
+/* ---------------------------------------------------------------
+   상단 배지 칩
+   --------------------------------------------------------------- */
+body.qq-redesign .qq-badge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto 14px;
+  padding: 7px 18px;
+  font-family: var(--qq-font-display);
+  font-size: 14px;
+  color: var(--qq-ink);
+  background: var(--qq-yellow);
+  border: 3px solid var(--qq-line);
+  border-radius: 999px;
+  box-shadow: var(--qq-shadow-sm);
+}
+
+/* ---------------------------------------------------------------
+   게임 모드 허브 (서바이버 · 타워 디펜스 · 라스트 워)
+   --------------------------------------------------------------- */
+body.qq-redesign .qq-mode-hub {
+  max-width: 720px;
+  margin: 4px auto 26px;
+  padding: 0 16px;
+  text-align: left;
+}
+
+body.qq-redesign .qq-mode-title {
+  margin-bottom: 10px;
+  font-family: var(--qq-font-display);
+  font-size: 17px;
+  color: var(--qq-ink);
+  text-align: center;
+}
+
+body.qq-redesign .qq-mode-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+body.qq-redesign .qq-mode-card {
+  display: grid;
+  gap: 6px;
+  padding: 14px 12px;
+  font-family: inherit;
+  text-align: left;
+  color: var(--qq-ink);
+  background: var(--qq-card);
+  border: 3px solid var(--qq-line);
+  border-radius: var(--qq-radius);
+  box-shadow: var(--qq-shadow-sm);
+}
+
+body.qq-redesign button.qq-mode-card {
+  cursor: pointer;
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+body.qq-redesign button.qq-mode-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(41, 37, 36, 0.85);
+}
+
+body.qq-redesign .qq-mode-card.locked {
+  background: #f5ecd9;
+  color: var(--qq-ink-soft);
+  box-shadow: none;
+  border-style: dashed;
+  border-color: rgba(41, 37, 36, 0.45);
+}
+
+body.qq-redesign .qq-mode-emoji {
+  font-size: 26px;
+  line-height: 1;
+}
+
+body.qq-redesign .qq-mode-card strong {
+  font-family: var(--qq-font-display);
+  font-size: 15px;
+  font-weight: 400;
+  color: inherit;
+}
+
+body.qq-redesign .qq-mode-card small {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--qq-muted);
+}
+
+body.qq-redesign .qq-mode-tag {
+  justify-self: start;
+  padding: 2px 10px;
+  font-family: var(--qq-font-display);
+  font-size: 11px;
+  border-radius: 999px;
+  border: 2px solid var(--qq-line);
+}
+
+body.qq-redesign .qq-mode-tag.play {
+  color: #fffdf6;
+  background: var(--qq-green);
+}
+
+body.qq-redesign .qq-mode-tag.soon {
+  color: var(--qq-ink-soft);
+  background: #ece1c8;
+  border-color: rgba(41, 37, 36, 0.45);
+}
+
+/* ---------------------------------------------------------------
+   몬스터 퍼레이드 (홈 하단 장식)
+   --------------------------------------------------------------- */
+body.qq-redesign .qq-parade {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 86px;
+  display: none;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+body.qq-home:not(.qq-ingame) .qq-parade {
+  display: block;
+}
+
+body.qq-redesign .qq-parade::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 26px;
+  background: #8fbf5a;
+  border-top: 3px solid var(--qq-line);
+}
+
+body.qq-redesign .qq-parade-track {
+  position: absolute;
+  bottom: 14px;
+  display: flex;
+  align-items: flex-end;
+  gap: 46px;
+  animation: qq-parade-march 36s linear infinite;
+  will-change: transform;
+}
+
+body.qq-redesign .qq-parade img {
+  image-rendering: pixelated;
+  width: auto;
+  height: 52px;
+  animation: qq-parade-bob 0.85s ease-in-out infinite alternate;
+  filter: drop-shadow(0 4px 0 rgba(41, 37, 36, 0.25));
+}
+
+body.qq-redesign .qq-parade img:nth-child(2n) {
+  animation-delay: 0.22s;
+  height: 44px;
+}
+
+body.qq-redesign .qq-parade img:nth-child(3n) {
+  animation-delay: 0.42s;
+}
+
+@keyframes qq-parade-march {
+  from { transform: translateX(100vw); }
+  to { transform: translateX(-110%); }
+}
+
+@keyframes qq-parade-bob {
+  from { transform: translateY(0); }
+  to { transform: translateY(-7px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.qq-redesign .qq-parade-track,
+  body.qq-redesign .qq-parade img {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+   캐릭터 선택 카드 (닉네임 화면)
+   --------------------------------------------------------------- */
+body.qq-redesign .qq-class-picker {
+  text-align: left;
+  margin: 0 0 20px;
+}
+
+body.qq-redesign .qq-class-title {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--qq-ink-soft);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+body.qq-redesign .qq-class-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+body.qq-redesign .qq-class-card {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  min-height: 128px;
+  padding: 12px 8px 10px;
+  color: var(--qq-ink);
+  text-align: center;
+  background: var(--qq-card);
+  border: 3px solid rgba(41, 37, 36, 0.4);
+  border-radius: var(--qq-radius);
+  cursor: pointer;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+}
+
+body.qq-redesign .qq-class-card:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--qq-shadow-sm);
+}
+
+body.qq-redesign .qq-class-card.selected {
+  background: #fff7e6;
+  border-color: var(--qq-orange);
+  box-shadow: var(--qq-shadow-sm);
+}
+
+body.qq-redesign .qq-class-card.selected::after {
+  content: "✓ 선택됨";
+  padding: 1px 8px;
+  font-family: var(--qq-font-display);
+  font-size: 10px;
+  color: #fffdf6;
+  background: var(--qq-orange);
+  border-radius: 999px;
+}
+
+body.qq-redesign .qq-class-sprite {
+  width: 39px;
+  height: 68px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  image-rendering: pixelated;
+  transform-origin: bottom center;
+}
+
+body.qq-redesign .qq-class-card:hover .qq-class-sprite,
+body.qq-redesign .qq-class-card.selected .qq-class-sprite {
+  animation: qq-parade-bob 0.6s ease-in-out infinite alternate;
+}
+
+body.qq-redesign .qq-class-card strong {
+  font-family: var(--qq-font-display);
+  color: var(--qq-ink);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+body.qq-redesign .qq-class-card small,
+body.qq-redesign .qq-class-card em {
+  color: var(--qq-muted);
+  font-size: 10px;
+  font-style: normal;
+  line-height: 1.35;
+}
+
+body.qq-redesign .qq-class-card em {
+  color: var(--qq-green-deep);
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------------
+   교사 모드
+   --------------------------------------------------------------- */
+body.qq-redesign:not(.qq-ingame) .teacher-fab {
+  font-family: var(--qq-font-display) !important;
+  color: var(--qq-ink) !important;
+  background: var(--qq-yellow) !important;
+  border: 3px solid var(--qq-line) !important;
+  border-radius: 999px !important;
+  box-shadow: var(--qq-shadow-sm) !important;
+}
+
+body.qq-redesign:not(.qq-ingame) .teacher-modal {
+  color: var(--qq-ink) !important;
+  background: var(--qq-card) !important;
+  border: 3px solid var(--qq-line) !important;
+  border-radius: var(--qq-radius) !important;
+  box-shadow: var(--qq-shadow) !important;
+}
+
+body.qq-redesign:not(.qq-ingame) .teacher-backdrop {
+  background: rgba(60, 45, 24, 0.45) !important;
+}
+
+/* ---------------------------------------------------------------
+   인게임 화면 (라이트 테마 미적용, 최소 보정만)
+   --------------------------------------------------------------- */
+body.qq-ingame .qq-parade,
+body.qq-ingame .qq-mode-hub,
+body.qq-ingame .qq-badge-chip {
+  display: none !important;
+}
+
+/* ---------------------------------------------------------------
+   반응형
+   --------------------------------------------------------------- */
+@media (max-width: 720px) {
+  body.qq-redesign .qq-mode-grid,
+  body.qq-redesign .qq-class-grid {
+    grid-template-columns: 1fr;
+  }
+
+  body.qq-redesign .qq-class-card {
+    min-height: auto;
+    grid-template-columns: 48px 1fr;
+    justify-items: start;
+    text-align: left;
+    column-gap: 10px;
+  }
+
+  body.qq-redesign .qq-class-sprite {
+    grid-row: span 3;
+    align-self: center;
+  }
+
+  body.qq-redesign .qq-parade {
+    height: 66px;
+  }
+
+  body.qq-redesign .qq-parade img {
+    height: 40px;
+  }
+}

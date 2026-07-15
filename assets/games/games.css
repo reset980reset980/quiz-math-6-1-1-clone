@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Jua&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap");
+
+:root {
+  --qq-paper: #fdf6e7;
+  --qq-card: #fffdf6;
+  --qq-ink: #292524;
+  --qq-ink-soft: #57534e;
+  --qq-muted: #8a7f72;
+  --qq-orange: #f97316;
+  --qq-green: #16a34a;
+  --qq-sky: #0284c7;
+  --qq-yellow: #fbbf24;
+  --qq-rose: #e11d48;
+  --qq-shadow: 6px 6px 0 rgba(41, 37, 36, 0.85);
+  --qq-shadow-sm: 4px 4px 0 rgba(41, 37, 36, 0.85);
+  --qq-font-display: "Jua", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  color: var(--qq-ink);
+  background:
+    radial-gradient(rgba(249, 115, 22, 0.09) 1.6px, transparent 1.6px),
+    radial-gradient(rgba(2, 132, 199, 0.07) 1.6px, transparent 1.6px),
+    linear-gradient(180deg, #fdf6e7 0%, #fbeed3 60%, #f7e6c4 100%);
+  background-size: 34px 34px, 34px 34px, 100% 100%;
+  background-position: 0 0, 17px 17px, 0 0;
+  background-attachment: fixed;
+}
+
+.gg-wrap {
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 14px 14px 40px;
+}
+
+.gg-topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.gg-title {
+  margin: 0 auto 0 0;
+  font-family: var(--qq-font-display);
+  font-size: clamp(20px, 3.4vw, 28px);
+  font-weight: 400;
+  color: var(--qq-orange);
+  text-shadow: -2px -2px 0 #fffdf6, 2px -2px 0 #fffdf6, -2px 2px 0 #fffdf6, 2px 2px 0 #fffdf6,
+    3px 4px 0 rgba(41, 37, 36, 0.28);
+}
+
+.gg-btn {
+  padding: 8px 16px;
+  font-family: var(--qq-font-display);
+  font-size: 14px;
+  color: var(--qq-ink);
+  background: var(--qq-card);
+  border: 3px solid var(--qq-ink);
+  border-radius: 14px;
+  box-shadow: var(--qq-shadow-sm);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.gg-btn:hover { transform: translate(-1px, -1px); box-shadow: 5px 5px 0 rgba(41, 37, 36, 0.85); }
+.gg-btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 rgba(41, 37, 36, 0.85); }
+.gg-btn.primary { color: #fffdf6; background: linear-gradient(180deg, #fb923c, var(--qq-orange)); }
+.gg-btn.go { color: #fffdf6; background: linear-gradient(180deg, #4ade80, var(--qq-green)); }
+.gg-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: var(--qq-shadow-sm); }
+
+.gg-hud {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.gg-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  font-family: var(--qq-font-display);
+  font-size: 14px;
+  background: var(--qq-card);
+  border: 3px solid var(--qq-ink);
+  border-radius: 999px;
+  box-shadow: var(--qq-shadow-sm);
+}
+
+.gg-chip b { font-weight: 400; color: var(--qq-orange); }
+
+.gg-stage {
+  position: relative;
+  border: 3px solid var(--qq-ink);
+  border-radius: 18px;
+  box-shadow: var(--qq-shadow);
+  overflow: hidden;
+  background: #b8dc8c;
+  touch-action: none;
+}
+
+.gg-stage canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.gg-note {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--qq-muted);
+  text-align: center;
+}
+
+/* 오버레이(시작/게임오버/승리) */
+.gg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(60, 45, 24, 0.5);
+}
+
+.gg-overlay-card {
+  width: min(440px, 100%);
+  padding: 24px 20px;
+  text-align: center;
+  background: var(--qq-card);
+  border: 3px solid var(--qq-ink);
+  border-radius: 18px;
+  box-shadow: var(--qq-shadow);
+}
+
+.gg-overlay-card h2 {
+  margin: 0 0 6px;
+  font-family: var(--qq-font-display);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--qq-orange);
+}
+
+.gg-overlay-card p {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--qq-ink-soft);
+}
+
+.gg-overlay-card .gg-btn { margin: 4px; }
+
+.gg-stats {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.gg-stats span {
+  padding: 6px 12px;
+  font-family: var(--qq-font-display);
+  font-size: 13px;
+  background: #fff7e6;
+  border: 2px solid rgba(41, 37, 36, 0.4);
+  border-radius: 10px;
+}
+
+/* 타워 선택/업그레이드 팝업 */
+.gg-pop {
+  position: absolute;
+  z-index: 40;
+  display: grid;
+  gap: 6px;
+  padding: 10px;
+  background: var(--qq-card);
+  border: 3px solid var(--qq-ink);
+  border-radius: 14px;
+  box-shadow: var(--qq-shadow-sm);
+  transform: translate(-50%, -100%);
+}
+
+.gg-pop button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  font-family: var(--qq-font-display);
+  font-size: 13px;
+  color: var(--qq-ink);
+  background: #fff;
+  border: 2px solid rgba(41, 37, 36, 0.45);
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.gg-pop button:hover:not(:disabled) { background: #fff7e6; border-color: var(--qq-orange); }
+.gg-pop button:disabled { opacity: 0.45; cursor: not-allowed; }
+.gg-pop img { width: 26px; height: 26px; object-fit: contain; image-rendering: pixelated; }
+.gg-pop small { color: var(--qq-muted); font-family: "Plus Jakarta Sans", sans-serif; }
+
+@media (max-width: 640px) {
+  .gg-wrap { padding: 10px 8px 30px; }
+  .gg-chip { font-size: 12.5px; padding: 5px 10px; }
+}

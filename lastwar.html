@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Quiz Quest Arena - 라스트 워: 서바이벌. 정답 게이트로 부대를 키워 대군을 막아내자" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230284c7'/><text x='50' y='63' text-anchor='middle' font-size='54' font-family='Arial' font-weight='800' fill='white'>Q</text></svg>" />
+    <title>라스트 워: 서바이벌 - Quiz Quest Arena</title>
+    <link rel="stylesheet" href="./assets/games/games.css" />
+    <style>
+      .gg-wrap { max-width: 560px; }
+      .gg-stage { background: #8a9a5b; display: flex; justify-content: center; }
+      .gg-stage canvas { width: auto; max-width: 100%; max-height: calc(100vh - 215px); min-height: 320px; }
+    </style>
+  </head>
+  <body>
+    <div class="gg-wrap">
+      <div class="gg-topbar">
+        <h1 class="gg-title">🛡️ 라스트 워: 서바이벌</h1>
+        <button type="button" class="gg-btn" id="mute-btn">🔊</button>
+        <a class="gg-btn" href="./index.html">← 홈으로</a>
+      </div>
+      <div class="gg-hud">
+        <span class="gg-chip">🪖 부대 <b id="hud-squad">1</b></span>
+        <span class="gg-chip">📏 거리 <b id="hud-dist">0m</b></span>
+        <span class="gg-chip">⚔️ 해결 <b id="hud-kills">0</b></span>
+        <span class="gg-chip">✏️ 정답 <b id="hud-correct">0</b></span>
+      </div>
+      <div class="gg-stage" id="stage">
+        <canvas id="game" width="540" height="760"></canvas>
+      </div>
+      <p class="gg-note">← → 키 또는 화면 드래그로 부대를 움직여요. 문제의 <b>정답 게이트</b>를 통과하면 부대가 커져요!</p>
+    </div>
+    <script type="module" src="./assets/games/lastwar.js"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Quiz Quest Arena - 타워 디펜스: 퀴즈를 풀어 코인을 모으고 타워로 교실을 지키자" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23f97316'/><text x='50' y='63' text-anchor='middle' font-size='54' font-family='Arial' font-weight='800' fill='white'>Q</text></svg>" />
+    <title>타워 디펜스 - Quiz Quest Arena</title>
+    <link rel="stylesheet" href="./assets/games/games.css" />
+  </head>
+  <body>
+    <div class="gg-wrap">
+      <div class="gg-topbar">
+        <h1 class="gg-title">🏰 타워 디펜스</h1>
+        <button type="button" class="gg-btn go" id="wave-btn">▶ 웨이브 시작</button>
+        <button type="button" class="gg-btn" id="mute-btn">🔊</button>
+        <a class="gg-btn" href="./index.html">← 홈으로</a>
+      </div>
+      <div class="gg-hud">
+        <span class="gg-chip">🪙 코인 <b id="hud-coins">0</b></span>
+        <span class="gg-chip">❤️ 생명 <b id="hud-lives">10</b></span>
+        <span class="gg-chip">🌊 웨이브 <b id="hud-wave">0/10</b></span>
+        <span class="gg-chip">⚔️ 해결 <b id="hud-kills">0</b></span>
+        <span class="gg-chip">✏️ 정답 <b id="hud-correct">0</b></span>
+      </div>
+      <div class="gg-stage" id="stage">
+        <canvas id="game" width="960" height="600"></canvas>
+      </div>
+      <p class="gg-note">잔디 칸 아무 곳이나 눌러 타워를 짓고, 웨이브가 끝나면 퀴즈로 보너스 코인을 받아요! 타워를 누르면 강화·판매할 수 있어요. (길 위에는 지을 수 없어요)</p>
+    </div>
+    <script type="module" src="./assets/games/tower.js"></script>
+  </body>
+</html>
