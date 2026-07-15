@@ -243,15 +243,45 @@ function normalizeAnswer(type, value) {
   return raw.toUpperCase();
 }
 
-function makeDistractors(answer) {
-  const numeric = Number(String(answer).replace(/,/g, ""));
-  if (Number.isFinite(numeric)) {
-    const pool = [numeric + 1, numeric - 1, numeric * 10, numeric / 10, numeric + 10, numeric - 10]
+function formatNumber(value) {
+  return Number.isInteger(value) ? String(value) : String(Number(value.toFixed(2)));
+}
+
+// 단답형 → 객관식 변환용 오답 보기 생성
+// 숫자·단위·분수는 값을 변형하고, 그 외에는 같은 세트의 다른 정답을 빌려온다
+function makeDistractors(answer, answerPool = []) {
+  const raw = String(answer).trim();
+  const numeric = Number(raw.replace(/,/g, ""));
+  if (raw !== "" && Number.isFinite(numeric)) {
+    const candidates = [numeric + 1, numeric - 1, numeric * 10, numeric / 10, numeric + 10, numeric - 10]
       .filter(value => value !== numeric && Number.isFinite(value))
-      .map(value => Number.isInteger(value) ? String(value) : String(Number(value.toFixed(2))));
-    return [...new Set(pool)].slice(0, 3);
+      .map(formatNumber);
+    return [...new Set(candidates)].slice(0, 3);
   }
-  return ["O", "X", "모르겠음"].filter(value => value !== answer).slice(0, 3);
+  // "5개", "12cm" 같은 숫자+단위
+  const unitMatch = raw.match(/^(\d+(?:\.\d+)?)\s*([^\d\s.,]{1,6})$/);
+  if (unitMatch) {
+    const base = Number(unitMatch[1]);
+    const unit = unitMatch[2];
+    return [base + 1, Math.max(0, base - 1), base * 2]
+      .map(value => `${formatNumber(value)}${unit}`)
+      .filter(value => value !== raw)
+      .slice(0, 3);
+  }
+  // "3/4" 또는 "{3/4}" 분수
+  const fracMatch = raw.match(/^(\{?)(\d+)\/(\d+)\}?$/);
+  if (fracMatch) {
+    const [, brace, top, bottom] = fracMatch;
+    const wrap = (a, b) => brace ? `{${a}/${b}}` : `${a}/${b}`;
+    return [...new Set([wrap(bottom, top), wrap(Number(top) + 1, bottom), wrap(top, Number(bottom) + 1)])]
+      .filter(value => value !== raw)
+      .slice(0, 3);
+  }
+  // 텍스트 답: 같은 세트의 다른 문제 정답을 오답으로 사용
+  const others = [...new Set(answerPool.map(value => String(value).trim()).filter(value => value && value !== raw))];
+  const sampled = shuffle(others).slice(0, 3);
+  if (sampled.length >= 2) return sampled;
+  return [...sampled, "정답이 아니에요", "다시 생각해 보세요"].slice(0, 3);
 }
 
 function shuffle(values) {
@@ -274,12 +304,21 @@ function resolveChoiceAnswer(item) {
   return raw;
 }
 
-function toRuntimeQuiz(item, index) {
+function toRuntimeQuiz(item, index, answerPool = []) {
   const resolvedAnswer = resolveChoiceAnswer(item);
   const aliases = acceptedAnswers(item.type, resolvedAnswer);
   const answer = aliases[0] || normalizeAnswer(item.type, resolvedAnswer);
   let options = item.type === "ox" ? ["O", "X"] : item.options.slice();
-  if (item.type === "short" && options.length < 2) options = [answer, ...makeDistractors(answer)];
+  if (item.type === "short" && options.length < 2) {
+    const oxAnswer = normalizeAnswer("ox", answer);
+    if (["O", "X"].includes(oxAnswer)) {
+      // 답이 O/X 계열인 단답형은 O/X 보기로 출제
+      options = ["O", "X"];
+      if (!aliases.includes(oxAnswer)) aliases.push(oxAnswer);
+    } else {
+      options = [answer, ...makeDistractors(answer, answerPool)];
+    }
+  }
   if (!options.some(option => aliases.includes(option.trim()))) options.push(answer);
   options = [...new Set(options.map(option => option.trim()).filter(Boolean))].slice(0, 6);
   if (options.length < 2) throw new Error(`${index + 1}번 문제의 보기가 부족합니다.`);
@@ -316,7 +355,11 @@ function saveRuntimeQuestions() {
     .map((item, index) => ({ item: normalizeQuestion(item), index }))
     .filter(({ item }) => item.question.trim() && acceptedAnswers(item.type, item.answer).length > 0);
   if (!candidates.length) throw new Error("게임에 적용할 문제가 없습니다. 문제와 정답을 먼저 입력하세요.");
-  const runtime = candidates.map(({ item, index }) => toRuntimeQuiz(item, index));
+  // 텍스트 단답형의 오답 보기 재료: 같은 세트의 다른 단답형 정답들 (O/X 계열 제외)
+  const answerPool = candidates
+    .filter(({ item }) => item.type === "short" && !["O", "X"].includes(normalizeAnswer("ox", item.answer)))
+    .map(({ item }) => item.answer);
+  const runtime = candidates.map(({ item, index }) => toRuntimeQuiz(item, index, answerPool));
   localStorage.setItem(STORAGE_KEY, JSON.stringify(runtime));
   localStorage.setItem(TITLE_KEY, state.title.trim() || "맞춤 퀴즈");
   saveDraft();

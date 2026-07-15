@@ -551,8 +551,9 @@ function drawMobs() {
     const spec = MOB_TYPES[mob.type];
     const pos = pointAt(mob.progress);
     sprites.shadow.draw(ctx, pos.x, pos.y + 16, { scale: 1.2 * mob.scale });
+    // 몬스터 원본 그림은 왼쪽을 보므로, 오른쪽 이동일 때 뒤집는다
     sprites[spec.sprite].draw(ctx, pos.x, pos.y, {
-      frame: mob.frame, scale: 0.95 * mob.scale, flipX: pos.dirX < 0
+      frame: mob.frame, scale: 0.95 * mob.scale, flipX: pos.dirX > 0
     });
     // HP 바
     const ratio = clamp(mob.hp / mob.maxHp, 0, 1);
