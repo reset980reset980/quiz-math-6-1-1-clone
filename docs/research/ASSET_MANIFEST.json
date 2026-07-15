@@ -1,8 +1,8 @@
 [
   {
     "path": "index.html",
-    "bytes": 1266,
-    "sha256": "1939f8074268474ee8722f58e6c3a1eacfa98ec80e4cbc09e0e4e674123ae390",
+    "bytes": 1587,
+    "sha256": "f98c5163c792967ffbf8e4a6570790704ac91714826326051ede48a029782e16",
     "source": "https://quiz-math-6-1-1.vercel.app/"
   },
   {
@@ -13,8 +13,8 @@
   },
   {
     "path": "assets/index-BFKr9x2y.js",
-    "bytes": 375104,
-    "sha256": "af67d6e8f191bd447bb163379a5d1f09b2dac2ab0bee831e388c66c04daaa1da",
+    "bytes": 378848,
+    "sha256": "77c362b1d214d0d9bde8864c6b1ca2717b951b7d7104639d96e098f22b74b9a1",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/index-BFKr9x2y.js"
   },
   {
@@ -43,26 +43,26 @@
   },
   {
     "path": "assets/generated/slime_green.png",
-    "bytes": 1035,
-    "sha256": "714ce7bd0287bd5c7b6643dd688a948a68ee2d2613549676399a1e05aaa16398",
+    "bytes": 4565,
+    "sha256": "bf7a9c4c1348590df12f40750277b6753feaff13b130bf18e94230fd8b9f7b66",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/slime_green.png"
   },
   {
     "path": "assets/generated/slime_blue.png",
-    "bytes": 1082,
-    "sha256": "f8507915284718132fd8691f1c6a6469118c76834eb7e611bb39a62b5628dac2",
+    "bytes": 4272,
+    "sha256": "56526a853176f174bb9d6c48682cc78603a5d510912994988f8441d42e02cbf7",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/slime_blue.png"
   },
   {
     "path": "assets/generated/slime_red.png",
-    "bytes": 924,
-    "sha256": "85891ca3be4e6289b280a6234e4fdeaf002784e09c0f33de952c274cf9a15965",
+    "bytes": 4700,
+    "sha256": "a1ed7e9f210eaff6e19d5c864e2d7c2e88866104558acee49d2974a195a021df",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/slime_red.png"
   },
   {
     "path": "assets/generated/slime_elite.png",
-    "bytes": 1119,
-    "sha256": "44f73c333df1d062bf25537f34d4bcb70bd3ac5489542fc90f5de62bab6aef14",
+    "bytes": 4765,
+    "sha256": "65e8e02023f33ce81a7616b33b7b31b87a5d55b180800dda002b2d9f47f49c8b",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/slime_elite.png"
   },
   {
@@ -103,32 +103,32 @@
   },
   {
     "path": "assets/generated/monster_bat.png",
-    "bytes": 1068,
-    "sha256": "f41b604191847edd49b375fa7bfe3698beaffb17e520d4c36925bcfbc686605e",
+    "bytes": 2381,
+    "sha256": "2d90462604e798dd0cd7e90909ad802ed937b819660ed1f2e5f4b34d72454efd",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_bat.png"
   },
   {
     "path": "assets/generated/monster_wasp.png",
-    "bytes": 1512,
-    "sha256": "aa02a5b9a4f9df7d3ab66a0c13f4c5ae5e82ad2c062a42c0059791bdbfc89df1",
+    "bytes": 3240,
+    "sha256": "932647fb2f454babfbf1baf30080fe5d789fc98efdc8002608fb726669ebe9e7",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_wasp.png"
   },
   {
     "path": "assets/generated/monster_ghost.png",
-    "bytes": 1137,
-    "sha256": "a6d932bf53f9d5041e0c614823c04ff3706e6523308dd18c98653f58eafbf1be",
+    "bytes": 4377,
+    "sha256": "a2ab8f48524418a071d37ced3ae4df7e73f346dff6febe25173d1b50fc0fbafa",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_ghost.png"
   },
   {
     "path": "assets/generated/monster_crow.png",
-    "bytes": 1470,
-    "sha256": "7620ecb59e3d762cd9baf880de70990accfa68d28e3c0c6def73517b0e38d38e",
+    "bytes": 2231,
+    "sha256": "f55a61c1ba1d09c261e6f230021ea90275980932ded1db8c12400ce4c2eb00e4",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_crow.png"
   },
   {
     "path": "assets/generated/monster_boar.png",
-    "bytes": 1088,
-    "sha256": "73eba77168c5c572ef5ac4c96a8585610ebd10df2fc40564b47de2646ceb3d86",
+    "bytes": 3791,
+    "sha256": "ff7fc17f3c317caea4d146705e883eafdca6db0afe39d36bcc5481ec5629bf61",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_boar.png"
   },
   {
@@ -139,14 +139,14 @@
   },
   {
     "path": "assets/generated/monster_badger.png",
-    "bytes": 1022,
-    "sha256": "9385ac7f4b2777f422c115418469b07d20294984c475ee817c6c361c6374ff0f",
+    "bytes": 2419,
+    "sha256": "24490db49f5bc74e9762a8828b8ef5b4a773cb42df092a8938e40e32821d85f7",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_badger.png"
   },
   {
     "path": "assets/generated/monster_fox.png",
-    "bytes": 1244,
-    "sha256": "ff86787a7646c7c311f427c6d0f9d2109a15f144a868e70ea81724cc488b70b9",
+    "bytes": 2576,
+    "sha256": "61d6202942e46907d374b623d427c85f512e7104261abf943b4c6b2d34a1bfc3",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_fox.png"
   },
   {
@@ -163,62 +163,62 @@
   },
   {
     "path": "assets/generated/monster_elite_crowned.png",
-    "bytes": 1782,
-    "sha256": "e646d4122071c4381fe55b7a472a1cdd87f7033e50a635f1502b8183a382c77f",
+    "bytes": 5427,
+    "sha256": "fa9654fb5e4dd33b14eb058d50e6a14ddb57d432780752fa67e208c515d2a84f",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_elite_crowned.png"
   },
   {
     "path": "assets/generated/slime_green_walk_strip.png",
-    "bytes": 1552,
-    "sha256": "6e181ad93cd4d5a43287cb1aecaeb687b34e50cc53fe907237ec738ec40fefa1",
+    "bytes": 9466,
+    "sha256": "b6ffc76a91f0278f4ac58e4cb3fbe6785719323be9f54b77d0f8f244a2e78526",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/slime_green_walk_strip.png"
   },
   {
     "path": "assets/generated/slime_blue_walk_strip.png",
-    "bytes": 1625,
-    "sha256": "23f7970324e785f7f33538f16a9cbd062271fff2fb61a42273ec7daace95320a",
+    "bytes": 7919,
+    "sha256": "96de503847710b509134cda2718c06a0cf68084c2edef467721adf1f7165b14e",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/slime_blue_walk_strip.png"
   },
   {
     "path": "assets/generated/slime_red_walk_strip.png",
-    "bytes": 1390,
-    "sha256": "4f383a881024b91cc8bf69a499057fe1c9b6caaa637058322f9ecca356136a9a",
+    "bytes": 6955,
+    "sha256": "4d800506a41331db4e0b4454105560905f6b9947fe8539fc460a447c8fb006aa",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/slime_red_walk_strip.png"
   },
   {
     "path": "assets/generated/slime_elite_walk_strip.png",
-    "bytes": 1528,
-    "sha256": "58f171013aa059c38efe1b8a5f053b2acb9da639d6e90e727121d8e4604f8792",
+    "bytes": 8659,
+    "sha256": "f92306c7bb53428a2ec0a02ee1e884c75964be8f0b8dc0cf7f5f1a9f13a365f9",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/slime_elite_walk_strip.png"
   },
   {
     "path": "assets/generated/monster_bat_walk_strip.png",
-    "bytes": 1565,
-    "sha256": "e2ecbf249d63e813a2b88785275fa31f2aa150b738e3ec49fa8e1323742f394e",
+    "bytes": 4185,
+    "sha256": "02749ddefa3d4eb550cd96c6750a5c47e90c9abedebf7f4b99eadf69894946f1",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_bat_walk_strip.png"
   },
   {
     "path": "assets/generated/monster_wasp_walk_strip.png",
-    "bytes": 2055,
-    "sha256": "3b09edf98ff6c06a83c791736f37449f4aceccf80a67fb83c851396ef341a664",
+    "bytes": 5845,
+    "sha256": "b75c47295926fdef840a40e03d34197dd5cb86f44dd48627097bd225628b8987",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_wasp_walk_strip.png"
   },
   {
     "path": "assets/generated/monster_ghost_walk_strip.png",
-    "bytes": 1785,
-    "sha256": "67cf06cf3d7c8b35825ebffb9b47880480436c42345941f40728474d2876d8c6",
+    "bytes": 8884,
+    "sha256": "4f5359734fb08cf816479876acb30b74c78d9e310018378b5b9c51e2ea35b3a0",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_ghost_walk_strip.png"
   },
   {
     "path": "assets/generated/monster_crow_walk_strip.png",
-    "bytes": 1919,
-    "sha256": "c9657e59cdeb8be54f62136154d7a49ede2e77b1d9cc362923032d179795210c",
+    "bytes": 3929,
+    "sha256": "7b7ba6254ff33a13107ed3e700233475990ab7c9478c8477facd21a714ed528f",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_crow_walk_strip.png"
   },
   {
     "path": "assets/generated/monster_boar_walk_strip.png",
-    "bytes": 1423,
-    "sha256": "6cde9001c9377cf9ff03c1762cb743294ee65872b35f87da786fa0152be27224",
+    "bytes": 7897,
+    "sha256": "410f724196666a8f78d849ec53af682854f857bf35fd6911ff2603564a3509e6",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_boar_walk_strip.png"
   },
   {
@@ -229,14 +229,14 @@
   },
   {
     "path": "assets/generated/monster_badger_walk_strip.png",
-    "bytes": 1398,
-    "sha256": "69660edbb11ead8659daf3ea14b3ed4978f3460e7dc4ba3051e68e8efcc47f7f",
+    "bytes": 4274,
+    "sha256": "8b40753dfb72b79c12a0d0a8ead608322b08c1e128e47e9858667b7c6f9332cd",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_badger_walk_strip.png"
   },
   {
     "path": "assets/generated/monster_fox_walk_strip.png",
-    "bytes": 1982,
-    "sha256": "18c567a4a1c6b7a28f85de9ab3eb57fd80151ad9a8081791d9d0a6d7321ffc2f",
+    "bytes": 4988,
+    "sha256": "8a363dc370f7c0ff2f33d20ac457c4c5b29a8ca2d10cadb7f0e3f5f6663b97fc",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_fox_walk_strip.png"
   },
   {
@@ -253,8 +253,8 @@
   },
   {
     "path": "assets/generated/monster_elite_crowned_walk_strip.png",
-    "bytes": 2739,
-    "sha256": "3ca19a380c35e6b1afe8c2162a2eebef2f8b2bbe17a5e55fa8f948a2d067b8af",
+    "bytes": 9938,
+    "sha256": "d42ff938c93a1fcbfb84e5bbe64409f087b40073e978fcff8f00b2777c45e860",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/monster_elite_crowned_walk_strip.png"
   },
   {
@@ -649,8 +649,8 @@
   },
   {
     "path": "assets/generated/ground_tile.png",
-    "bytes": 68247,
-    "sha256": "a600d70ca1ef56b68c47b0d39b09f92d43d7dc097804b94096424d27844b5c9e",
+    "bytes": 426517,
+    "sha256": "97970034bfa4936946daf45ce9c6671a02115d59aada1e009e2c5555545a2451",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/generated/ground_tile.png"
   },
   {
@@ -925,8 +925,8 @@
   },
   {
     "path": "assets/g6-1-1-CLDU9m4L.js",
-    "bytes": 129990,
-    "sha256": "e9b34af814226dadb0f212212814ee1356eee9b40bca359053808c6f6c133c44",
+    "bytes": 130803,
+    "sha256": "fb2f8bfe282496af75d6eae50805245fc45cbe77fad6240007ad814117745025",
     "source": "https://quiz-math-6-1-1.vercel.app/assets/g6-1-1-CLDU9m4L.js"
   }
 ]
