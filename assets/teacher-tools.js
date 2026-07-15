@@ -70,6 +70,27 @@ function zepBlocks(text) {
   return blocks;
 }
 
+const ANSWER_LINE_RE = /^(정답|답)\s*[:：]?\s*/;
+const OPTION_MARKER_RE = /^([①②③④⑤⑥]|[1-6][.)]\s*|[A-Da-d][.)]\s*)/;
+const CIRCLED = "①②③④⑤⑥";
+
+function stripAnswerPrefix(line) {
+  return String(line || "").replace(ANSWER_LINE_RE, "").trim();
+}
+
+function stripOptionMarker(line) {
+  return String(line || "").replace(OPTION_MARKER_RE, "").trim();
+}
+
+// 블록에서 '정답 …' 줄을 찾아 제거하고 그 값을 돌려준다 — 보기·문제에 답이 섞이는 것 방지
+function extractAnswerLine(lines) {
+  const index = lines.findIndex(line => ANSWER_LINE_RE.test(line) && stripAnswerPrefix(line).length <= 40);
+  if (index < 0) return "";
+  const value = stripAnswerPrefix(lines[index]);
+  lines.splice(index, 1);
+  return value;
+}
+
 function parseZep(text) {
   return zepBlocks(text).map((lines, index) => {
     const header = lines.shift() || "";
@@ -77,21 +98,42 @@ function parseZep(text) {
     const type = normalizeType(typeMatch?.[1] || "");
     let question = "";
     let options = [];
-    let answer = "";
+    let answer = extractAnswerLine(lines);
 
     if (type === "choice") {
-      options = lines.slice(-4);
-      question = lines.slice(0, -4).join("\n").trim();
+      // ①②… / 1) / A. 같은 마커가 붙은 줄을 보기로 인식, 없으면 마지막 4줄 사용
+      const markerLines = lines.filter(line => OPTION_MARKER_RE.test(line));
+      if (markerLines.length >= 2) {
+        options = markerLines.map(stripOptionMarker);
+        question = lines.filter(line => !OPTION_MARKER_RE.test(line)).join("\n").trim();
+      } else {
+        options = lines.slice(-4);
+        question = lines.slice(0, -4).join("\n").trim();
+      }
+      // 정답이 ② 처럼 번호로 적혀 있으면 해당 보기 텍스트로 변환
+      const circledIndex = CIRCLED.indexOf(answer.trim().charAt(0));
+      const numberedMatch = answer.trim().match(/^([1-6])(?:번)?$/);
+      if (circledIndex >= 0 && options[circledIndex]) answer = options[circledIndex];
+      else if (numberedMatch && options[Number(numberedMatch[1]) - 1]) answer = options[Number(numberedMatch[1]) - 1];
     } else if (type === "short") {
-      const maybeAnswer = lines.at(-1) || "";
-      const hasLikelyAnswer = lines.length > 1 && maybeAnswer.length <= 40 && !/[?？.다까]$/.test(maybeAnswer);
-      answer = hasLikelyAnswer ? maybeAnswer : "";
-      question = (hasLikelyAnswer ? lines.slice(0, -1) : lines).join("\n").trim();
+      if (!answer) {
+        const maybeAnswer = lines.at(-1) || "";
+        const hasLikelyAnswer = lines.length > 1 && maybeAnswer.length <= 40 && !/[?？.다까]$/.test(maybeAnswer);
+        answer = hasLikelyAnswer ? stripAnswerPrefix(maybeAnswer) : "";
+        if (hasLikelyAnswer) lines.pop();
+      }
+      question = lines.join("\n").trim();
     } else {
-      const maybeAnswer = normalizeAnswer("ox", lines.at(-1) || "");
-      const hasLikelyAnswer = ["O", "X"].includes(maybeAnswer) && lines.length > 1;
-      answer = hasLikelyAnswer ? maybeAnswer : "";
-      question = (hasLikelyAnswer ? lines.slice(0, -1) : lines).join("\n").trim();
+      if (!answer) {
+        const maybeAnswer = normalizeAnswer("ox", lines.at(-1) || "");
+        if (["O", "X"].includes(maybeAnswer) && lines.length > 1) {
+          answer = maybeAnswer;
+          lines.pop();
+        }
+      } else {
+        answer = normalizeAnswer("ox", answer);
+      }
+      question = lines.join("\n").trim();
       options = ["O", "X"];
     }
 
@@ -219,9 +261,23 @@ function shuffle(values) {
     .map(([, value]) => value);
 }
 
+// 선택형 정답이 "1" / "②" / "3번" 처럼 번호로 적힌 경우 해당 보기 텍스트로 변환
+// (그대로 두면 번호가 새 보기로 추가되고 실제 정답 문장은 오답 처리된다)
+function resolveChoiceAnswer(item) {
+  const raw = String(item.answer || "").trim();
+  if (item.type !== "choice" || !item.options?.length) return raw;
+  if (item.options.some(option => option.trim() === raw)) return raw;
+  const circledIndex = CIRCLED.indexOf(raw.charAt(0));
+  if (circledIndex >= 0 && item.options[circledIndex]) return item.options[circledIndex];
+  const numbered = raw.match(/^([1-6])\s*번?$/);
+  if (numbered && item.options[Number(numbered[1]) - 1]) return item.options[Number(numbered[1]) - 1];
+  return raw;
+}
+
 function toRuntimeQuiz(item, index) {
-  const aliases = acceptedAnswers(item.type, item.answer);
-  const answer = aliases[0] || normalizeAnswer(item.type, item.answer);
+  const resolvedAnswer = resolveChoiceAnswer(item);
+  const aliases = acceptedAnswers(item.type, resolvedAnswer);
+  const answer = aliases[0] || normalizeAnswer(item.type, resolvedAnswer);
   let options = item.type === "ox" ? ["O", "X"] : item.options.slice();
   if (item.type === "short" && options.length < 2) options = [answer, ...makeDistractors(answer)];
   if (!options.some(option => aliases.includes(option.trim()))) options.push(answer);
